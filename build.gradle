@@ -20,15 +20,13 @@ publishing {
         }
     }
     repositories {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
         maven {
             name = "anytime-log-releases"
             url = "http://gurunun.shop:8081/repository/maven-releases/"
             allowInsecureProtocol true
             credentials {
-                username = "${properties.getProperty("NEXUS_USERNAME")}"
-                password = "${properties.getProperty("NEXUS_PASSWORD")}"
+                username = System.getenv("NEXUS_USERNAME")
+                password = System.getenv("NEXUS_PASSWORD")
             }
         }
     }
